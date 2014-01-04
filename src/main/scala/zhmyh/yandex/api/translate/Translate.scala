@@ -9,7 +9,7 @@ import zhmyh.yandex.api.translate.Language.Language
 /**
  * Makes the Yandex Translate API available to Scala applications.
  * 
- * @author
+ * @author zhmyh
  */
 class Translate(protected val key: String) extends TranslateBase with YandexAPI {
 
