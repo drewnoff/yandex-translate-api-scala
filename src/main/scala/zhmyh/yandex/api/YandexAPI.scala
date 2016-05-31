@@ -37,7 +37,8 @@ trait YandexAPI {
    * @returns Response as instance of the Try[String].
    */
   private def sendRequest(request: Http.Request): Try[String] = {
-    Try(request.asString) match {
+    Try(request.option(HttpOptions.connTimeout(60000))
+      .option(HttpOptions.readTimeout(60000)).asString) match {
       case Success(response) => Success(response)
       case Failure(HttpException(rcode, rmessage, body, cause)) => {
 	val code = Try((Json.parse(body) \ "code").asOpt[Int] match {
